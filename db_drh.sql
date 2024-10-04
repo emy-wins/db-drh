@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 04, 2024 at 12:49 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Hôte : 127.0.0.1
+-- Généré le : ven. 04 oct. 2024 à 16:34
+-- Version du serveur : 10.4.32-MariaDB
+-- Version de PHP : 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_drh`
+-- Base de données : `db_drh`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `diplome`
+-- Structure de la table `diplome`
 --
 
 CREATE TABLE `diplome` (
@@ -41,21 +41,49 @@ CREATE TABLE `diplome` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `enfant`
+-- Structure de la table `enfant`
 --
 
 CREATE TABLE `enfant` (
-  `id_e` int(11) NOT NULL
+  `id_e` int(11) NOT NULL,
+  `nom` varchar(20) NOT NULL,
+  `nom_arb` varchar(20) NOT NULL,
+  `prenom` varchar(30) NOT NULL,
+  `prenom_arb` varchar(30) NOT NULL,
+  `sexe` varchar(10) NOT NULL,
+  `date_naissance` date NOT NULL,
+  `lieu_naissance` varchar(100) NOT NULL,
+  `lieu_naissance_arb` varchar(100) NOT NULL,
+  `idsc` varchar(50) NOT NULL,
+  `cin` varchar(10) NOT NULL,
+  `file_cin` blob NOT NULL,
+  `annee_civil` int(4) NOT NULL,
+  `num_civil` int(11) NOT NULL,
+  `file_extrait` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fonctionnaire`
+-- Structure de la table `fonctionnaire`
 --
 
 CREATE TABLE `fonctionnaire` (
   `id_f` int(11) NOT NULL,
+  `nom` varchar(20) NOT NULL,
+  `nom_arb` varchar(20) NOT NULL,
+  `prenom` varchar(30) NOT NULL,
+  `prenom_arb` varchar(30) NOT NULL,
+  `sexe` varchar(10) NOT NULL,
+  `date_naissance` date NOT NULL,
+  `lieu_naissance` varchar(100) NOT NULL,
+  `lieu_naissance_arb` varchar(100) NOT NULL,
+  `idsc` varchar(50) NOT NULL,
+  `cin` varchar(10) NOT NULL,
+  `file_cin` blob NOT NULL,
+  `annee_civil` int(4) NOT NULL,
+  `num_civil` int(11) NOT NULL,
+  `file_extrait` blob NOT NULL,
   `photo` blob NOT NULL,
   `prenom_pere` varchar(30) NOT NULL,
   `prenom_pere_arb` varchar(30) NOT NULL,
@@ -89,7 +117,7 @@ CREATE TABLE `fonctionnaire` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `formation`
+-- Structure de la table `formation`
 --
 
 CREATE TABLE `formation` (
@@ -103,26 +131,14 @@ CREATE TABLE `formation` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `partner`
+-- Structure de la table `partner`
 --
 
 CREATE TABLE `partner` (
   `id_p` int(11) NOT NULL,
-  `file_mariage` blob NOT NULL,
-  `num_enfant` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `personne`
---
-
-CREATE TABLE `personne` (
-  `id_p` int(11) NOT NULL,
   `nom` varchar(20) NOT NULL,
+  `nom_arb` varchar(20) NOT NULL,
   `prenom` varchar(30) NOT NULL,
-  `nom_arb` varchar(30) NOT NULL,
   `prenom_arb` varchar(30) NOT NULL,
   `sexe` varchar(10) NOT NULL,
   `date_naissance` date NOT NULL,
@@ -133,87 +149,77 @@ CREATE TABLE `personne` (
   `file_cin` blob NOT NULL,
   `annee_civil` int(4) NOT NULL,
   `num_civil` int(11) NOT NULL,
-  `file_extrait` blob NOT NULL
+  `file_extrait` blob NOT NULL,
+  `file_mariage` blob NOT NULL,
+  `num_enfant` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `diplome`
+-- Index pour la table `diplome`
 --
 ALTER TABLE `diplome`
   ADD PRIMARY KEY (`id_d`);
 
 --
--- Indexes for table `enfant`
+-- Index pour la table `enfant`
 --
 ALTER TABLE `enfant`
   ADD PRIMARY KEY (`id_e`);
 
 --
--- Indexes for table `fonctionnaire`
+-- Index pour la table `fonctionnaire`
 --
 ALTER TABLE `fonctionnaire`
   ADD PRIMARY KEY (`id_f`);
 
 --
--- Indexes for table `formation`
+-- Index pour la table `formation`
 --
 ALTER TABLE `formation`
   ADD PRIMARY KEY (`id_f`);
 
 --
--- Indexes for table `partner`
+-- Index pour la table `partner`
 --
 ALTER TABLE `partner`
   ADD PRIMARY KEY (`id_p`);
 
 --
--- Indexes for table `personne`
---
-ALTER TABLE `personne`
-  ADD PRIMARY KEY (`id_p`);
-
---
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `diplome`
+-- AUTO_INCREMENT pour la table `diplome`
 --
 ALTER TABLE `diplome`
   MODIFY `id_d` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `enfant`
+-- AUTO_INCREMENT pour la table `enfant`
 --
 ALTER TABLE `enfant`
   MODIFY `id_e` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `fonctionnaire`
+-- AUTO_INCREMENT pour la table `fonctionnaire`
 --
 ALTER TABLE `fonctionnaire`
   MODIFY `id_f` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `formation`
+-- AUTO_INCREMENT pour la table `formation`
 --
 ALTER TABLE `formation`
   MODIFY `id_f` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `partner`
+-- AUTO_INCREMENT pour la table `partner`
 --
 ALTER TABLE `partner`
-  MODIFY `id_p` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `personne`
---
-ALTER TABLE `personne`
   MODIFY `id_p` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
