@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : ven. 04 oct. 2024 à 16:34
--- Version du serveur : 10.4.32-MariaDB
--- Version de PHP : 8.2.12
+-- Host: 127.0.0.1
+-- Generation Time: Dec 03, 2024 at 12:22 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,26 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `db_drh`
+-- Database: `db_drh`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `diplome`
+-- Table structure for table `conge`
+--
+
+CREATE TABLE `conge` (
+  `id_cng` int(11) NOT NULL,
+  `nbr_jour` int(100) NOT NULL,
+  `date_entre` date NOT NULL,
+  `date_sortie` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `diplome`
 --
 
 CREATE TABLE `diplome` (
@@ -41,7 +54,7 @@ CREATE TABLE `diplome` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `enfant`
+-- Table structure for table `enfant`
 --
 
 CREATE TABLE `enfant` (
@@ -65,7 +78,7 @@ CREATE TABLE `enfant` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `fonctionnaire`
+-- Table structure for table `fonctionnaire`
 --
 
 CREATE TABLE `fonctionnaire` (
@@ -100,6 +113,7 @@ CREATE TABLE `fonctionnaire` (
   `file_rib` blob NOT NULL,
   `situation` varchar(10) NOT NULL,
   `commune_residence` varchar(20) NOT NULL,
+  `province_residence` varchar(100) NOT NULL,
   `commune_residence_arb` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
   `telephone` varchar(20) NOT NULL,
@@ -109,15 +123,25 @@ CREATE TABLE `fonctionnaire` (
   `ppr` varchar(10) NOT NULL,
   `file_arrete` blob NOT NULL,
   `grade` varchar(30) NOT NULL,
+  `date_grade` date DEFAULT NULL,
   `echelle` int(11) NOT NULL,
   `echelon` int(11) NOT NULL,
+  `date_echelon` date DEFAULT NULL,
+  `fonction` varchar(255) NOT NULL,
   `password` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `fonctionnaire`
+--
+
+INSERT INTO `fonctionnaire` (`id_f`, `nom`, `nom_arb`, `prenom`, `prenom_arb`, `sexe`, `date_naissance`, `lieu_naissance`, `lieu_naissance_arb`, `idsc`, `cin`, `file_cin`, `annee_civil`, `num_civil`, `file_extrait`, `photo`, `prenom_pere`, `prenom_pere_arb`, `prenom_grand_pere_paternel`, `prenom_grand_pere_paternel_arb`, `prenom_mere`, `prenom_mere_arb`, `prenom_grand_pere_maternel`, `prenom_grand_pere_maternel_arb`, `ville_naissance`, `ville_naissance_arb`, `commune_naissance`, `commune_naissance_arb`, `file_rib`, `situation`, `commune_residence`, `province_residence`, `commune_residence_arb`, `email`, `telephone`, `adresse`, `adresse_arb`, `date_recrutement`, `ppr`, `file_arrete`, `grade`, `date_grade`, `echelle`, `echelon`, `date_echelon`, `fonction`, `password`) VALUES
+(1, 'imane', 'gdfgfdgf', 'gffdgfdg', 'dgfgdg', 'Homme', '2024-12-11', 'sqdsqdsqd', 'sdfghujklmù', '84854169', 'dgdgd', 0x62643564653231302d666338372d343034662d616137662d3936376437366231623736382e746d70, 2024, 66545415, 0x3131313633353134363630393733342e6a7067, 0x3131313633353134363630393733342e6a7067, 'sdsdgg', 'sdgsdg', 'sdgsdggd', 'sdgsdgg', 'sgdddgd', 'sgdgsdd', 'sdgggd', 'eretertreter', 'qsdqsdsqd', 'dgfdrgfdgfd', 'sdqsdqds', 'qsdqsdqds', 0x686f7573652d7376677265706f2d636f6d2e737667, 'Marie', 'rtyrtytrytry', '', 'rtyrtytrytry', 'imaneben@gmail.com', '125486946512', 'dxcugihygboùuhioh', '^cyguihoiuùoçpàuçou', '2024-12-18', '1561561651', 0x68656172742d7376677265706f2d636f6d2e737667, 'Grade', NULL, 155, 15, NULL, 'Fonction ..', 'dgdgd');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `formation`
+-- Table structure for table `formation`
 --
 
 CREATE TABLE `formation` (
@@ -131,7 +155,7 @@ CREATE TABLE `formation` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `partner`
+-- Table structure for table `partner`
 --
 
 CREATE TABLE `partner` (
@@ -154,73 +178,110 @@ CREATE TABLE `partner` (
   `num_enfant` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Index pour les tables déchargées
+-- Table structure for table `type_conge`
+--
+
+CREATE TABLE `type_conge` (
+  `id_tc` int(11) NOT NULL,
+  `nom_type` varchar(255) NOT NULL,
+  `file_motif` blob NOT NULL,
+  `nbr_jour` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `diplome`
+-- Indexes for table `conge`
+--
+ALTER TABLE `conge`
+  ADD PRIMARY KEY (`id_cng`);
+
+--
+-- Indexes for table `diplome`
 --
 ALTER TABLE `diplome`
   ADD PRIMARY KEY (`id_d`);
 
 --
--- Index pour la table `enfant`
+-- Indexes for table `enfant`
 --
 ALTER TABLE `enfant`
   ADD PRIMARY KEY (`id_e`);
 
 --
--- Index pour la table `fonctionnaire`
+-- Indexes for table `fonctionnaire`
 --
 ALTER TABLE `fonctionnaire`
   ADD PRIMARY KEY (`id_f`);
 
 --
--- Index pour la table `formation`
+-- Indexes for table `formation`
 --
 ALTER TABLE `formation`
   ADD PRIMARY KEY (`id_f`);
 
 --
--- Index pour la table `partner`
+-- Indexes for table `partner`
 --
 ALTER TABLE `partner`
   ADD PRIMARY KEY (`id_p`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- Indexes for table `type_conge`
+--
+ALTER TABLE `type_conge`
+  ADD PRIMARY KEY (`id_tc`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `diplome`
+-- AUTO_INCREMENT for table `conge`
+--
+ALTER TABLE `conge`
+  MODIFY `id_cng` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `diplome`
 --
 ALTER TABLE `diplome`
   MODIFY `id_d` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `enfant`
+-- AUTO_INCREMENT for table `enfant`
 --
 ALTER TABLE `enfant`
   MODIFY `id_e` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `fonctionnaire`
+-- AUTO_INCREMENT for table `fonctionnaire`
 --
 ALTER TABLE `fonctionnaire`
-  MODIFY `id_f` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_f` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT pour la table `formation`
+-- AUTO_INCREMENT for table `formation`
 --
 ALTER TABLE `formation`
   MODIFY `id_f` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `partner`
+-- AUTO_INCREMENT for table `partner`
 --
 ALTER TABLE `partner`
   MODIFY `id_p` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `type_conge`
+--
+ALTER TABLE `type_conge`
+  MODIFY `id_tc` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
