@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : lun. 16 déc. 2024 à 13:40
--- Version du serveur : 10.4.32-MariaDB
--- Version de PHP : 8.2.12
+-- Host: 127.0.0.1
+-- Generation Time: Dec 16, 2024 at 11:42 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `db_drh`
+-- Database: `db_drh`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `affectation`
+-- Table structure for table `affectation`
 --
 
 CREATE TABLE `affectation` (
@@ -33,7 +33,7 @@ CREATE TABLE `affectation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `affectation`
+-- Dumping data for table `affectation`
 --
 
 INSERT INTO `affectation` (`id_aff`, `type`) VALUES
@@ -43,20 +43,36 @@ INSERT INTO `affectation` (`id_aff`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `conge`
+-- Table structure for table `conge`
 --
 
 CREATE TABLE `conge` (
   `id_cng` int(11) NOT NULL,
   `nbr_jour` int(100) NOT NULL,
+  `date_sortie` date NOT NULL,
   `date_entre` date NOT NULL,
-  `date_sortie` date NOT NULL
+  `fonctionnaire_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `conge`
+--
+
+INSERT INTO `conge` (`id_cng`, `nbr_jour`, `date_sortie`, `date_entre`, `fonctionnaire_id`) VALUES
+(1, 6, '2024-12-27', '2025-01-02', 27),
+(2, 6, '2024-12-27', '2025-01-02', 27),
+(3, 13, '2024-12-19', '2025-01-01', 27),
+(4, 27, '2025-01-02', '2025-01-29', 27),
+(5, 13, '2024-12-20', '2025-01-02', 3),
+(6, 13, '2024-12-20', '2025-01-02', 3),
+(7, 13, '2024-12-20', '2025-01-02', 3),
+(8, 12, '2024-12-26', '2025-01-07', 27),
+(9, 1, '2024-12-25', '2024-12-26', 27);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `diplome`
+-- Table structure for table `diplome`
 --
 
 CREATE TABLE `diplome` (
@@ -73,7 +89,7 @@ CREATE TABLE `diplome` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `enfant`
+-- Table structure for table `enfant`
 --
 
 CREATE TABLE `enfant` (
@@ -97,7 +113,7 @@ CREATE TABLE `enfant` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `fonctionnaire`
+-- Table structure for table `fonctionnaire`
 --
 
 CREATE TABLE `fonctionnaire` (
@@ -152,7 +168,7 @@ CREATE TABLE `fonctionnaire` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `fonctionnaire`
+-- Dumping data for table `fonctionnaire`
 --
 
 INSERT INTO `fonctionnaire` (`id_f`, `nom`, `nom_arb`, `prenom`, `prenom_arb`, `sexe`, `date_naissance`, `lieu_naissance`, `lieu_naissance_arb`, `idsc`, `cin`, `date_cin`, `file_cin`, `annee_civil`, `num_civil`, `file_extrait`, `photo`, `prenom_pere`, `prenom_pere_arb`, `prenom_grand_pere_paternel`, `prenom_grand_pere_paternel_arb`, `prenom_mere`, `prenom_mere_arb`, `prenom_grand_pere_maternel`, `prenom_grand_pere_maternel_arb`, `ville_naissance`, `ville_naissance_arb`, `commune_naissance`, `commune_naissance_arb`, `file_rib`, `situation`, `commune_residence`, `province_residence`, `commune_residence_arb`, `email`, `telephone`, `adresse`, `adresse_arb`, `date_recrutement`, `ppr`, `file_arrete`, `grade`, `date_grade`, `echelle`, `echelon`, `date_echelon`, `fonction`, `password`) VALUES
@@ -163,7 +179,7 @@ INSERT INTO `fonctionnaire` (`id_f`, `nom`, `nom_arb`, `prenom`, `prenom_arb`, `
 -- --------------------------------------------------------
 
 --
--- Structure de la table `formation`
+-- Table structure for table `formation`
 --
 
 CREATE TABLE `formation` (
@@ -177,7 +193,7 @@ CREATE TABLE `formation` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `imprimer`
+-- Table structure for table `imprimer`
 --
 
 CREATE TABLE `imprimer` (
@@ -190,7 +206,7 @@ CREATE TABLE `imprimer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `imprimer`
+-- Dumping data for table `imprimer`
 --
 
 INSERT INTO `imprimer` (`id_imp`, `name`, `date_import`, `type_file`, `size`, `file`) VALUES
@@ -205,7 +221,7 @@ INSERT INTO `imprimer` (`id_imp`, `name`, `date_import`, `type_file`, `size`, `f
 -- --------------------------------------------------------
 
 --
--- Structure de la table `partner`
+-- Table structure for table `partner`
 --
 
 CREATE TABLE `partner` (
@@ -230,7 +246,7 @@ CREATE TABLE `partner` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `partner`
+-- Dumping data for table `partner`
 --
 
 INSERT INTO `partner` (`id_p`, `nom_partner`, `nom_partner_arb`, `prenom_partner`, `prenom_partner_arb`, `sexe_partner`, `date_naissance_partner`, `lieu_naissance_partner`, `lieu_naissance_partner_arb`, `idsc_partner`, `cin_partner`, `file_cin_partner`, `annee_civil_partner`, `num_civil_partner`, `file_extrait_partner`, `file_mariage_partner`, `num_enfant_partner`, `fonctionnaire_id`) VALUES
@@ -239,7 +255,7 @@ INSERT INTO `partner` (`id_p`, `nom_partner`, `nom_partner_arb`, `prenom_partner
 -- --------------------------------------------------------
 
 --
--- Structure de la table `type_conge`
+-- Table structure for table `type_conge`
 --
 
 CREATE TABLE `type_conge` (
@@ -250,7 +266,7 @@ CREATE TABLE `type_conge` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `type_conge`
+-- Dumping data for table `type_conge`
 --
 
 INSERT INTO `type_conge` (`id_tc`, `nom_type`, `file_motif`, `nbr_jour`) VALUES
@@ -258,128 +274,135 @@ INSERT INTO `type_conge` (`id_tc`, `nom_type`, `file_motif`, `nbr_jour`) VALUES
 (2, 'congé annuale ', '', 30);
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `affectation`
+-- Indexes for table `affectation`
 --
 ALTER TABLE `affectation`
   ADD PRIMARY KEY (`id_aff`);
 
 --
--- Index pour la table `conge`
+-- Indexes for table `conge`
 --
 ALTER TABLE `conge`
-  ADD PRIMARY KEY (`id_cng`);
+  ADD PRIMARY KEY (`id_cng`),
+  ADD KEY `fonctionnaire` (`fonctionnaire_id`);
 
 --
--- Index pour la table `diplome`
+-- Indexes for table `diplome`
 --
 ALTER TABLE `diplome`
   ADD PRIMARY KEY (`id_d`);
 
 --
--- Index pour la table `enfant`
+-- Indexes for table `enfant`
 --
 ALTER TABLE `enfant`
   ADD PRIMARY KEY (`id_e`);
 
 --
--- Index pour la table `fonctionnaire`
+-- Indexes for table `fonctionnaire`
 --
 ALTER TABLE `fonctionnaire`
   ADD PRIMARY KEY (`id_f`);
 
 --
--- Index pour la table `formation`
+-- Indexes for table `formation`
 --
 ALTER TABLE `formation`
   ADD PRIMARY KEY (`id_f`);
 
 --
--- Index pour la table `imprimer`
+-- Indexes for table `imprimer`
 --
 ALTER TABLE `imprimer`
   ADD PRIMARY KEY (`id_imp`);
 
 --
--- Index pour la table `partner`
+-- Indexes for table `partner`
 --
 ALTER TABLE `partner`
   ADD PRIMARY KEY (`id_p`),
   ADD KEY `test` (`fonctionnaire_id`);
 
 --
--- Index pour la table `type_conge`
+-- Indexes for table `type_conge`
 --
 ALTER TABLE `type_conge`
   ADD PRIMARY KEY (`id_tc`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `affectation`
+-- AUTO_INCREMENT for table `affectation`
 --
 ALTER TABLE `affectation`
   MODIFY `id_aff` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT pour la table `conge`
+-- AUTO_INCREMENT for table `conge`
 --
 ALTER TABLE `conge`
-  MODIFY `id_cng` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cng` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT pour la table `diplome`
+-- AUTO_INCREMENT for table `diplome`
 --
 ALTER TABLE `diplome`
   MODIFY `id_d` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `enfant`
+-- AUTO_INCREMENT for table `enfant`
 --
 ALTER TABLE `enfant`
   MODIFY `id_e` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `fonctionnaire`
+-- AUTO_INCREMENT for table `fonctionnaire`
 --
 ALTER TABLE `fonctionnaire`
   MODIFY `id_f` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT pour la table `formation`
+-- AUTO_INCREMENT for table `formation`
 --
 ALTER TABLE `formation`
   MODIFY `id_f` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `imprimer`
+-- AUTO_INCREMENT for table `imprimer`
 --
 ALTER TABLE `imprimer`
   MODIFY `id_imp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT pour la table `partner`
+-- AUTO_INCREMENT for table `partner`
 --
 ALTER TABLE `partner`
   MODIFY `id_p` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT pour la table `type_conge`
+-- AUTO_INCREMENT for table `type_conge`
 --
 ALTER TABLE `type_conge`
   MODIFY `id_tc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Contraintes pour les tables déchargées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `partner`
+-- Constraints for table `conge`
+--
+ALTER TABLE `conge`
+  ADD CONSTRAINT `fonctionnaire` FOREIGN KEY (`fonctionnaire_id`) REFERENCES `fonctionnaire` (`id_f`);
+
+--
+-- Constraints for table `partner`
 --
 ALTER TABLE `partner`
   ADD CONSTRAINT `test` FOREIGN KEY (`fonctionnaire_id`) REFERENCES `fonctionnaire` (`id_f`);
